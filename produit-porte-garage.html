@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Découvrez nos portes de garage - Porta 9">
+  <title>Porta 9 - Portes de garage</title>
+  <link rel="stylesheet" href="styles/common.css">
+  <link rel="stylesheet" href="styles/produits.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=League+Spartan:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Product detail specific styles */
+    .product-hero {
+      height: 60vh;
+      min-height: 400px;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--color-white);
+      padding: 0 1rem;
+      margin-bottom: 4rem;
+    }
+    
+    .product-hero-content {
+      max-width: 800px;
+    }
+    
+    .product-hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--color-white);
+    }
+    
+    .product-hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    
+    .product-detail-section {
+      padding: 5rem 0;
+    }
+    
+    .product-detail-section:nth-child(even) {
+      background-color: var(--color-bg-alt);
+    }
+    
+    .product-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    .product-detail-grid.reverse {
+      direction: rtl;
+    }
+    
+    .product-detail-text {
+      direction: ltr;
+    }
+    
+    .product-detail-text h2 {
+      color: var(--color-primary);
+      margin-bottom: 1.5rem;
+    }
+    
+    .product-detail-text p {
+      color: var(--color-text-light);
+      margin-bottom: 1rem;
+    }
+    
+    .product-detail-image {
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .product-detail-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .product-detail-section:hover .product-detail-image img {
+      transform: scale(1.05);
+    }
+    
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .spec-card {
+      background-color: var(--color-white);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    
+    .spec-icon {
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+    }
+    
+    .spec-card h3 {
+      margin-bottom: 0.5rem;
+      color: var(--color-primary);
+      font-size: 1.2rem;
+    }
+    
+    .spec-card p {
+      color: var(--color-text-light);
+      margin: 0;
+      font-size: 0.95rem;
+    }
+    
+    .gallery-section {
+      padding: 5rem 0;
+      background-color: var(--color-bg-alt);
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .gallery-item {
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    @media (max-width: 992px) {
+      .product-detail-grid,
+      .product-detail-grid.reverse {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        direction: ltr;
+      }
+      
+      .product-detail-image {
+        order: -1;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .product-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .product-hero p {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+    <header class="header">
+    <div class="container header-container">
+      <div class="logo">
+        <a href="index.html" class="logo-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-door-open">
+            <path d="M13 4h3a2 2 0 0 1 2 2v14"></path>
+            <path d="M2 20h3"></path>
+            <path d="M13 20h9"></path>
+            <path d="M10 12v.01"></path>
+            <path d="M13 4.562v16.157a1 1 0 0 1-1.242.97L5 20V5.562a2 2 0 0 1 1.515-1.94l4-1A2 2 0 0 1 13 4.561Z"></path>
+          </svg>
+          <span>Porta 9</span>
+        </a>
+      </div>
+      <nav class="nav">
+        <div class="menu-toggle" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+          <li class="nav-item"><a href="produits.html" class="nav-link active">Nos Produits</a></li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link cta">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="product-hero">
+      <div class="product-hero-content">
+        <h1>Portes de garage</h1>
+        <p>Solutions sur-mesure alliant sécurité, isolation et esthétique</p>
+        <a href="contact.html" class="btn btn-primary">Demander un devis</a>
+      </div>
+    </section>
+
+    <section class="product-detail-section">
+      <div class="container">
+        <div class="product-detail-grid">
+          <div class="product-detail-text" data-aos="fade-right">
+            <h2>Une solution adaptée à chaque besoin</h2>
+            <p>Chez Porta 9, nous proposons une large gamme de portes de garage pour répondre à tous vos besoins en termes de sécurité, d'isolation et d'esthétique.</p>
+            <p>Nos portes de garage sont fabriquées avec des matériaux de haute qualité et sont conçues pour résister aux conditions climatiques les plus extrêmes tout en offrant une isolation thermique et phonique optimale.</p>
+            <p>Que vous recherchiez une porte sectionnelle, basculante ou latérale, nos experts vous guideront vers la solution la plus adaptée à votre configuration et à vos exigences.</p>
+            <div class="specs-grid">
+              <div class="spec-card">
+                <div class="spec-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                  </svg>
+                </div>
+                <h3>Sécurité renforcée</h3>
+                <p>Systèmes anti-effraction et verrouillage multi-points</p>
+              </div>
+              <div class="spec-card">
+                <div class="spec-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-thermometer">
+                    <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path>
+                  </svg>
+                </div>
+                <h3>Isolation optimale</h3>
+                <p>Coefficient thermique élevé pour des économies d'énergie</p>
+              </div>
+              <div class="spec-card">
+                <div class="spec-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette">
+                    <circle cx="13.5" cy="6.5" r="2.5"></circle>
+                    <circle cx="19" cy="13" r="2.5"></circle>
+                    <circle cx="6" cy="12" r="2.5"></circle>
+                    <circle cx="10" cy="20" r="2.5"></circle>
+                    <path d="m4.9 19.1 2.9-2.9"></path>
+                    <path d="m10.8 7.3 2.1-2.1"></path>
+                    <path d="m16.7 13.8 2.1-2.1"></path>
+                    <path d="M13.4 18.6 15 17"></path>
+                  </svg>
+                </div>
+                <h3>Design personnalisable</h3>
+                <p>Large choix de couleurs, matériaux et finitions</p>
+              </div>
+            </div>
+          </div>
+          <div class="product-detail-image" data-aos="fade-left">
+            <img src="https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Porte de garage sectionnelle" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-detail-section">
+      <div class="container">
+        <div class="product-detail-grid reverse">
+          <div class="product-detail-text" data-aos="fade-left">
+            <h2>Motorisation intelligente</h2>
+            <p>Toutes nos portes de garage peuvent être équipées d'une motorisation de dernière génération pour un confort d'utilisation optimal.</p>
+            <p>Nos systèmes de motorisation sont silencieux, fiables et dotés de fonctionnalités avancées comme la détection d'obstacles, l'arrêt automatique et la possibilité de contrôle à distance via smartphone.</p>
+            <p>Nous proposons également des solutions connectées qui vous permettent de contrôler votre porte de garage depuis n'importe où et de recevoir des notifications en temps réel.</p>
+            <ul class="feature-list">
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+                <span>Télécommandes multi-canaux</span>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+                <span>Contrôle via smartphone</span>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+                <span>Compatibilité avec les assistants vocaux</span>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+                <span>Détection d'obstacles et arrêt automatique</span>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+                <span>Batterie de secours en cas de coupure de courant</span>
+              </li>
+            </ul>
+          </div>
+          <div class="product-detail-image" data-aos="fade-right">
+            <img src="https://images.unsplash.com/photo-1573599852326-2d4da0bbe613?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Motorisation de porte de garage" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="container">
+        <h2 class="section-title">Nos réalisations</h2>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-aos="fade-up">
+            <img src="https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Porte de garage sectionnelle" loading="lazy">
+          </div>
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://images.unsplash.com/photo-1573599852326-2d4da0bbe613?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Porte de garage basculante" loading="lazy">
+          </div>
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://images.unsplash.com/photo-1571939228382-b2f2b585ce15?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Porte de garage latérale" loading="lazy">
+          </div>
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Porte de garage design" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="container">
+        <h2 class="section-title">Questions fréquentes</h2>
+        <div class="faq-container">
+          <div class="faq-item">
+            <div class="faq-question">
+              <h3>Quelle est la durée de vie moyenne d'une porte de garage ?</h3>
+              <button class="faq-toggle" aria-label="Ouvrir la réponse">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5v14"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>La durée de vie moyenne d'une porte de garage de qualité est d'environ 15 à 25 ans, selon le type de porte, la fréquence d'utilisation et l'entretien. Nos portes sont conçues pour durer et bénéficient d'une garantie de 10 ans sur les pièces mécaniques.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <h3>Combien de temps dure l'installation d'une porte de garage ?</h3>
+              <button class="faq-toggle" aria-label="Ouvrir la réponse">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5v14"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>L'installation d'une porte de garage par nos techniciens qualifiés prend généralement entre 4 et 8 heures, selon la complexité du projet et le type de porte. Pour une installation avec motorisation, comptez une journée complète. Nous nous engageons à réaliser l'installation dans les délais convenus et avec le minimum de perturbations.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <h3>Peut-on motoriser une porte de garage existante ?</h3>
+              <button class="faq-toggle" aria-label="Ouvrir la réponse">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5v14"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>Oui, dans la plupart des cas, il est possible de motoriser une porte de garage manuelle existante. Nos techniciens évaluent la compatibilité de votre porte avec nos systèmes de motorisation et vous proposent la solution la plus adaptée. La motorisation améliore considérablement le confort d'utilisation et la sécurité de votre porte de garage.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <h3>Quelles sont les options d'isolation disponibles ?</h3>
+              <button class="faq-toggle" aria-label="Ouvrir la réponse">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5v14"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>Nous proposons plusieurs niveaux d'isolation pour nos portes de garage, allant de l'isolation standard à l'isolation renforcée. Nos panneaux sandwich avec mousse polyuréthane haute densité offrent une excellente isolation thermique et phonique. Pour les garages attenants à l'habitation, nous recommandons nos portes à isolation renforcée qui contribuent significativement aux économies d'énergie.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Prêt à sécuriser votre garage avec style ?</h2>
+          <p>Contactez-nous dès aujourd'hui pour un devis personnalisé et gratuit.</p>
+          <a href="contact.html" class="btn btn-primary">Demander un devis</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-door-open">
+              <path d="M13 4h3a2 2 0 0 1 2 2v14"></path>
+              <path d="M2 20h3"></path>
+              <path d="M13 20h9"></path>
+              <path d="M10 12v.01"></path>
+              <path d="M13 4.562v16.157a1 1 0 0 1-1.242.97L5 20V5.562a2 2 0 0 1 1.515-1.94l4-1A2 2 0 0 1 13 4.561Z"></path>
+            </svg>
+            <span>Porta 9</span>
+          </a>
+          <p>Spécialiste en installation et dépannage de portes de garage, volets roulants et rideaux métalliques.</p>
+        </div>
+        <div class="footer-links">
+          <h3>Navigation</h3>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="produits.html">Nos Produits</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact</h3>
+          <ul>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>123 Avenue de la République, 75011 Paris</span>
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <span>01 23 45 67 89</span>
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <span>contact@exemple.fr</span>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h3>Suivez-nous</h3>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter">
+                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect width="4" height="12" x="2" y="9"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Porta 9. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/produits.js"></script>
+</body>
+</html>
